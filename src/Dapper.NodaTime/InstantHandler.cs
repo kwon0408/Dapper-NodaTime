@@ -39,6 +39,11 @@ namespace Dapper.NodaTime
             {
                 return Instant.FromDateTimeOffset(dateTimeOffset);
             }
+            
+            if (value is long longValue)
+            {
+                return Instant.FromUnixTimeTicks(longValue);
+            }
 
             throw new DataException("Cannot convert " + value.GetType() + " to NodaTime.Instant");
         }
